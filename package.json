@@ -1,7 +1,7 @@
 {
   "name": "body.react",
   "version": "0.1.0",
-  "description": "React,Body.Custom style!",
+  "description": "React,render in body!",
   "repository": "fast-flow/body.react",
   "homepage": "http://fast-flow.github.io/body.react",
   "gitUsername": "fast-flow",
@@ -11,7 +11,11 @@
       "react-body.react",
       "body.react-react",
       "body.react",
-      "React custom style"
+      "React custom style",
+      "dialog",
+      "modal",
+      "react-dialog",
+      "react-modal"
   ],
   "dependencies": {
     "classnames": "^2.2.5",

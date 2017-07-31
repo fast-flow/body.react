@@ -57,6 +57,9 @@ else {
                 var info = {
                     filepath: file.fullname
                 }
+                content = content.replace(/(\[.*?\]\((.*\.demo\.js)\))/gi, function (source, $1, $2) {
+                    return '<!--MR-R\n{type: "pre",file:"' + $2 + '"}\n-->\n\n' + $1
+                })
                 var html = markrun(
                     content,
                     {
@@ -85,6 +88,10 @@ else {
                     },
                     info
                 )
+                info.deps = info.deps || []
+                info.deps.forEach(function (filename) {
+                     file.cache.addDeps(filename)
+                })
                 html = html.replace(/href="([^"]+)"/g, function (all, url) {
                     if (!require('is-absolute-url')(url) && !/^\/\//.test(url)) {
                         url = url.replace(/README\.md$/,'index.html')

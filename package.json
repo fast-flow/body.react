@@ -1,6 +1,6 @@
 {
   "name": "body.react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React,render in body!",
   "repository": "fast-flow/body.react",
   "homepage": "http://fast-flow.github.io/body.react",
@@ -23,17 +23,18 @@
     "react-dom": "0.14.8"
   },
   "scripts": {
-    "js": "node config/hot-server.js",
     "doc": "fis3 release -w -d ./output -r ./ -f config/fis-conf.js",
+    "dev": "fis3 release -w -d ./output -r ./ -f config/fis-conf.js",
+    "dev:debug": "fis3 release -w -d ./output -r ./ -f config/fis-conf.js --verbose",
+    "js": "node config/hot-server.js",
     "js:debug": "node config/webpack-server.js",
-    "doc:debug": "fis3 release -w -d ./output -r ./ -f config/fis-conf.js --verbose",
     "gh": "fis3 release gh -c -d ./output -r ./ -f config/fis-conf.js && fis3 release ghversion -c -d ./output -r ./ -f config/fis-conf.js && webpack --progress --config ./config/webpack.gh.js && webpack --progress --config ./config/webpack.ghversion.js",
     "s": "node config/static-server.js",
     "gh-push": "node config/gh-push.js",
     "npm": "fis3 release npm -c -d ./output -r ./ -f config/fis-conf.js",
-    "test-ci": "./node_modules/jest/bin/jest.js",
-    "test": "./node_modules/jest/bin/jest.js --watch",
-    "release": "npm run test-ci && npm run gh && npm run gh-push && npm run npm && cd output && npm publish"
+    "test-ci": "./node_modules/karma/bin/karma start ./config/karma.ci.js",
+    "test": "./node_modules/karma/bin/karma start ./config/karma.conf.js --browsers Chrome",
+    "release": "npm run gh && npm run gh-push && npm run npm && cd output && npm publish"
   },
   "jest": {
     "moduleNameMapper": {
@@ -42,8 +43,9 @@
     }
   },
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-polyfill": "^6.22.0",
     "babel-core": "^6.22.1",
-    "babel-jest": "^18.0.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
@@ -57,24 +59,20 @@
     "console-polyfill": "^0.2.3",
     "css-loader": "^0.26.1",
     "del": "^2.2.2",
-    "enzyme": "^2.7.1",
     "es3ify-loader": "^0.2.0",
     "expect.js": "^0.3.1",
     "express": "^4.14.0",
     "extend": "^3.0.0",
     "file-loader": "^0.9.0",
     "fis-parser-less-2.x": "^0.1.4",
-    "fis3-hook-relative": "^2.0.0",
     "fis3-parser-translate-es3ify": "^0.0.3",
     "gh-pages": "^0.12.0",
     "glob": "^7.1.1",
     "graceful-fs": "^4.1.11",
     "hash-to-port": "^1.0.0",
     "is-absolute-url": "^2.1.0",
-    "jest": "^18.1.0",
     "json-loader": "^0.5.4",
     "less-loader": "^2.2.3",
-    "less-plugin-functions": "^0.0.2",
     "markrun": "^0.18.0",
     "markrun-themes": "^0.0.8",
     "open": "^0.0.5",
@@ -84,6 +82,19 @@
     "url-loader": "^0.5.7",
     "webpack": "1.13.2",
     "webpack-dev-middleware": "^1.9.0",
-    "webpack-hot-middleware": "^2.15.0"
+    "webpack-hot-middleware": "^2.15.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "1.3.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.2",
+    "karma-sauce-launcher": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "es5-shim": "^4.5.9",
+    "es6-promise": "^4.0.5",
+    "html5shiv": "^3.7.3",
+    "phantomjs-prebuilt": "^2.1.14"
   }
 }

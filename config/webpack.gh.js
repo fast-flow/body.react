@@ -8,13 +8,18 @@ module.exports = require('./webpack.config')({
     externals: {},
     lastPlugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+           'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.optimize.UglifyJsPlugin({
+           fromString: true,
            compress: {
-               warnings: false
+               warnings: false,
+               screw_ie8: false
            },
            mangle: {
+               screw_ie8: false
+           },
+           output: {
                screw_ie8: false
            }
         })

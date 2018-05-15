@@ -23,5 +23,6 @@ ReactDOM.render(
             <div>demos</div>
         </Body>
     ),
-    document.createElement('div'))
+    document.createElement('div')
+)
 ```
